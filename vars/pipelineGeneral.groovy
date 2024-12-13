@@ -9,7 +9,7 @@ def call(Map config) {
                 steps {
                     script {
                         echo "Instalando dependencias..."
-                        sh 'ls -la'
+                        org.devops.lb_buildartefacto.install()
                     }
                 }
             }
