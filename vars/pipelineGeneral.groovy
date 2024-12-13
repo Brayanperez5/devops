@@ -1,4 +1,6 @@
-@Library('devops@feature')
+def lb_buildartefacto = load '../src/org/devops/lb_buildartefacto.groovy'
+def lb_analisissonarqube = load '../src/org/devops/lb_analisissonarqube.groovy'
+
 def call(Map config) {
     pipeline {
         agent any 
@@ -9,7 +11,7 @@ def call(Map config) {
             stage('Clonar repositorio') {
                 steps {
                     script {
-                        org.devops.lb_buildartefacto.build()
+                        lb_buildartefacto.clone()
                     }
                 }
             }
