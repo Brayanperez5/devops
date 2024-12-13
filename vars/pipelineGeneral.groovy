@@ -1,6 +1,6 @@
 def lb_buildartefacto
 def lb_analisissonarqube
-
+def call(Map config) {
 node {
     try {
         // Cargar las librerías desde la ruta correcta
@@ -43,4 +43,5 @@ node {
     } finally {
         echo "Pipeline completado."
     }
+}
 }
