@@ -1,51 +1,53 @@
 def lb_buildartefacto = load 'src/org/devops/lb_buildartefacto.groovy'
 def lb_analisissonarqube = load 'src/org/devops/lb_analisissonarqube.groovy'
 
-pipeline {
-    agent any 
-    tools {
-        nodejs 'NodeJS' 
-    }
-    stages {
-        stage('Clonar repositorio') {
-            steps {
-                script {
-                    lb_buildartefacto.clone()
+def call(Map config) {
+    pipeline {
+        agent any 
+        tools {
+            nodejs 'NodeJS' 
+        }
+        stages {
+            stage('Clonar repositorio') {
+                steps {
+                    script {
+                        lb_buildartefacto.clone()
+                    }
+                }
+            }
+            stage('Instalar dependencias') {
+                steps {
+                    script {
+                        sh 'npm install'
+                    }
+                }
+            }
+            stage('Run Tests and Coverage') {
+                steps {
+                    script {
+                        sh 'npm test'
+                    }
+                }
+            }
+            stage('SonarQube Analysis') {
+                steps {
+                    script {
+                        echo "Iniciando análisis con SonarQube..."
+                        org.devops.lb_analisissonarqube.analisisSonar(env.GIT_BRANCH_1)
+                    }
                 }
             }
         }
-        stage('Instalar dependencias') {
-            steps {
-                script {
-                    sh 'npm install'
-                }
+        post {
+            always {
+                echo "Pipeline finalizado."
             }
-        }
-        stage('Run Tests and Coverage') {
-            steps {
-                script {
-                    sh 'npm test'
-                }
+            success {
+                echo "Pipeline ejecutado correctamente."
             }
-        }
-        stage('SonarQube Analysis') {
-            steps {
-                script {
-                    echo "Iniciando análisis con SonarQube..."
-                    lb_analisissonarqube.analisisSonar(env.GIT_BRANCH_1)
-                }
+            failure {
+                echo "El pipeline falló. Revisar los logs."
             }
-        }
-    }
-    post {
-        always {
-            echo "Pipeline finalizado."
-        }
-        success {
-            echo "Pipeline ejecutado correctamente."
-        }
-        failure {
-            echo "El pipeline falló. Revisar los logs."
         }
     }
 }
