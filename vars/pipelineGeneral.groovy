@@ -9,14 +9,13 @@ def call(Map config) {
                 steps {
                     script {
                         load '../src/org/devops/lb_buildartefacto.groovy'
-                        def clone()                       
                     }
                 }
             }
             stage('Instalar dependencias') {
                 steps {
                     script {
-                        sh 'npm install --verbose'
+                        sh 'npm install'
                     }
                 }
             }
