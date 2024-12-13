@@ -5,9 +5,12 @@ def call(Map config) {
             nodejs 'NodeJS' 
         }
         stages {
-            stage('Verificar PATH') {
+            stage('Verificar Node y npm') {
                 steps {
-                    sh 'echo $PATH'
+                    sh '''
+                    node -v
+                    npm -v
+                    '''
                 }
             }
             stage('Clonar repositorio') {
