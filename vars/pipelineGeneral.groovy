@@ -15,16 +15,14 @@ def call(Map config) {
             stage('Instalar dependencias') {
                 steps {
                     script {
-                        echo "Instalando dependencias..."
-                        org.devops.lb_buildartefacto.install()
+                        sh 'npm install --verbose'
                     }
                 }
             }
             stage('Run Tests and Coverage') {
                 steps {
                     script {
-                        echo "Ejecutando pruebas y generando cobertura..."
-                        org.devops.lb_analisissonarqube.testCoverage()
+                        sh 'npm test'
                     }
                 }
             }
