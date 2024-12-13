@@ -13,14 +13,6 @@ def call(Map config) {
                     }
                 }
             }
-            stage('Instalar dependencias') {
-                steps {
-                    script {
-                        echo "Instalando dependencias..."
-                        bat 'npm install'
-                    }
-                }
-            }
             stage('Run Tests and Coverage') {
                 steps {
                     script {
