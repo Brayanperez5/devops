@@ -7,8 +7,8 @@ node {
         stage('Cargar Librerías') {
             script {
                 echo "Cargando las librerías..."
-                lb_buildartefacto = load 'src/org/devops/lb_buildartefacto.groovy'
-                lb_analisissonarqube = load 'src/org/devops/lb_analisissonarqube.groovy'
+                lb_buildartefacto = load '../src/org/devops/lb_buildartefacto.groovy'
+                lb_analisissonarqube = load '../src/org/devops/lb_analisissonarqube.groovy'
             }
         }
         stage('Clonar Repositorio') {
