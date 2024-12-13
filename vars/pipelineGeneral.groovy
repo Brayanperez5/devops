@@ -8,8 +8,8 @@ def call(Map config) {
             stage('Instalar dependencias') {
                 steps {
                     script {
-                        echo "Instalando dependencias..."
                         org.devops.lb_buildartefacto.install()
+                        echo "Instalando dependencias..."
                     }
                 }
             }
