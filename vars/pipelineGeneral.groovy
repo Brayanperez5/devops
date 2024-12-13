@@ -1,5 +1,5 @@
-def lb_buildartefacto = load '../src/org/devops/lb_buildartefacto.groovy'
-def lb_analisissonarqube = load '../src/org/devops/lb_analisissonarqube.groovy'
+def lb_buildartefacto = load 'src/org/devops/lb_buildartefacto.groovy'
+def lb_analisissonarqube = load 'src/org/devops/lb_analisissonarqube.groovy'
 
 def call(Map config) {
     pipeline {
