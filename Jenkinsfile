@@ -1,2 +1,12 @@
 @Library('devops@feature') _
-pipelineGeneral()
+pipeline{
+    stages {
+        stage('Instalar dependencias') {
+                steps {
+                    script {
+                        org.devops.lb_buildartefacto.install()
+                    }
+                }
+    }
+}
+}
