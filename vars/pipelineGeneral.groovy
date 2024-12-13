@@ -1,26 +1,11 @@
 def call(Map config) {
     pipeline {
-        agent any // Puede ejecutarse en cualquier agente disponible
-
+        agent any 
         tools {
-            nodejs 'NodeJS' // Asegúrate de tener NodeJS configurado en Jenkins
+            nodejs 'NodeJS' 
         }
-
         stages {
-            stage('Initialize Environment') {
-                steps {
-                    script {
-                        // Calcular y asignar variables de entorno
-                        env.GIT_BRANCH_1 = config.branch ?: 'main'
-                        env.GIT_URL_1 = config.repoUrl ?: 'src'
-
-                        echo "GIT_BRANCH: ${env.GIT_BRANCH_1}"
-                        echo "GIT_REPO_URL: ${env.GIT_URL_1}"
-                    }
-                }
-            }
-
-            stage('Clone Repository') {
+            stage('Clonar repositorio') {
                 steps {
                     script {
                         echo "Clonando el repositorio: ${env.GIT_URL_1}"
@@ -28,7 +13,6 @@ def call(Map config) {
                     }
                 }
             }
-
             stage('Install Dependencies') {
                 steps {
                     script {
@@ -37,7 +21,6 @@ def call(Map config) {
                     }
                 }
             }
-
             stage('Build Artefact') {
                 steps {
                     script {
@@ -47,7 +30,6 @@ def call(Map config) {
                     }
                 }
             }
-
             stage('Run Tests and Coverage') {
                 steps {
                     script {
@@ -56,7 +38,6 @@ def call(Map config) {
                     }
                 }
             }
-
             stage('SonarQube Analysis') {
                 steps {
                     script {
@@ -66,7 +47,6 @@ def call(Map config) {
                 }
             }
         }
-
         post {
             always {
                 echo "Pipeline finalizado."
