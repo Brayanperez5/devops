@@ -5,14 +5,6 @@ def call(Map config) {
             nodejs 'NodeJS' 
         }
         stages {
-            stage('Verificar Node y npm') {
-                steps {
-                    sh '''
-                    node -v
-                    npm -v
-                    '''
-                }
-            }
             stage('Clonar repositorio') {
                 steps {
                     script {
