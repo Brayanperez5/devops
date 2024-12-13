@@ -1,4 +1,4 @@
-package org.devops
+package src.org.devops
 
 def clone() {
     echo "Clonando el repositorio desde: ${env.GIT_URL_1}"

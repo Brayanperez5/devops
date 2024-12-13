@@ -8,7 +8,7 @@ def call(Map config) {
             stage('Clonar repositorio') {
                 steps {
                     script {
-                         org.devops.lb_buildartefacto.build()
+                         src.org.devops.lb_buildartefacto.build()
                     }
                 }
             }
