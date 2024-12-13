@@ -33,7 +33,7 @@ def call(Map config) {
                 steps {
                     script {
                         echo "Iniciando análisis con SonarQube..."
-                        org.devops.lb_analisissonarqube.analisisSonar(env.GIT_URL_1)
+                        org.devops.lb_analisissonarqube.analisisSonar(env.GIT_BRANCH_1)
                     }
                 }
             }
