@@ -8,7 +8,8 @@ def call(Map config) {
             stage('Clonar repositorio') {
                 steps {
                     script {
-                        git branch: "${env.GIT_BRANCH_1}", url: "${env.GIT_URL_1}"
+                        load '../src/org/devops/lb_buildartefacto.groovy'
+                        def clone()                       
                     }
                 }
             }
