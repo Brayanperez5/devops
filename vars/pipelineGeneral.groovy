@@ -1,10 +1,8 @@
 pipeline {
     agent any
-
     tools {
         nodejs 'NodeJS' 
     }
-
     stages {
         stage('Clonar el repositorio') {
             steps {
@@ -13,7 +11,6 @@ pipeline {
                 }
             }
         }
-
         stage('Instalar dependencias') {
             steps {
                 script {
@@ -21,7 +18,6 @@ pipeline {
                 }
             }
         }
-
         stage('Testeando') {
             steps {
                 script {
@@ -29,7 +25,6 @@ pipeline {
                 }
             }
         }
-
         stage('Analizar en SonarQube') {
             steps {
                 script {
@@ -38,7 +33,6 @@ pipeline {
             }
         }
     }
-
     post {
         always {
             echo "Pipeline finalizado."
