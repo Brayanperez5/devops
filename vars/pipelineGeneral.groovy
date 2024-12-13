@@ -16,10 +16,8 @@ def call(Map config) {
             stage('Preparar entorno') {
                 steps {
                     script {
-                        // Realizar checkout en la rama feature
-                        checkout([$class: 'GitSCM', branches: [[name: '*/feature']], userRemoteConfigs: [[url: '<URL_REPOSITORIO>']]])
+                        checkout([$class: 'GitSCM', branches: [[name: '*/feature']], userRemoteConfigs: [[url: 'https://github.com/Brayanperez5/devops.git']]])
                     }
-                    // Validar la rama actual
                     sh 'git rev-parse --abbrev-ref HEAD'
                 }
             }
