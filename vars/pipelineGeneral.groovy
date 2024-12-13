@@ -9,9 +9,9 @@ def call(Map config) {
                 steps {
                     script {
                         echo "Clonando el repositorio: ${env.GIT_URL_1}"
-                        // Asegúrate de clonar el repositorio correctamente
+                        // Clonación del repositorio en la rama feature
                         sh 'git clone --branch feature https://github.com/Brayanperez5/devops.git'
-                        // Verifica que estamos en la rama correcta
+                        // Verificar que estamos en la rama correcta
                         sh 'cd devops && git rev-parse --abbrev-ref HEAD'
                     }
                 }
@@ -20,12 +20,13 @@ def call(Map config) {
             stage('Traer archivos desde main') {
                 steps {
                     script {
-                        // Extraer los archivos necesarios desde la rama main
+                        echo "Extrayendo archivos desde la rama main..."
+                        // Realizar un fetch completo y traer los archivos necesarios
                         sh '''
                         cd devops
-                        git fetch origin main
-                        git checkout origin/main -- package.json package-lock.json
-                        ls -la
+                        git fetch --all --prune
+                        git checkout origin/main -- react-test-master/package.json react-test-master/package-lock.json
+                        ls -la react-test-master
                         '''
                     }
                 }
@@ -35,8 +36,8 @@ def call(Map config) {
                 steps {
                     script {
                         echo "Instalando dependencias..."
-                        // Asegúrate de ejecutar npm install dentro del directorio del proyecto
-                        sh 'cd devops && npm install'
+                        // Instalar dependencias dentro de la subcarpeta
+                        sh 'cd devops/react-test-master && npm install'
                     }
                 }
             }
