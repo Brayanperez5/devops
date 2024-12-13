@@ -1,4 +1,3 @@
-def call(Map config) {
     pipeline {
         agent any 
         tools {
@@ -50,4 +49,3 @@ def call(Map config) {
             }
         }
     }
-}
