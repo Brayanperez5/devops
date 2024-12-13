@@ -9,6 +9,7 @@ def call(Map config) {
                 steps {
                     script {
                         load '../src/org/devops/lb_buildartefacto.groovy'
+                        clone()
                     }
                 }
             }
