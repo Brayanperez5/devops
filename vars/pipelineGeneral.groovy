@@ -5,14 +5,6 @@ def call(Map config) {
             nodejs 'NodeJS' 
         }
         stages {
-            stage('Clonar repositorio') {
-                steps {
-                    script {
-                        echo "Clonando el repositorio: ${env.GIT_URL_1}"
-                        org.devops.lb_buildartefacto.clone()
-                    }
-                }
-            }
             stage('Instalar dependencias') {
                 steps {
                     script {
@@ -21,6 +13,15 @@ def call(Map config) {
                     }
                 }
             }
+            stage('Clonar repositorio') {
+                steps {
+                    script {
+                        echo "Clonando el repositorio: ${env.GIT_URL_1}"
+                        org.devops.lb_buildartefacto.clone()
+                    }
+                }
+            }
+
             stage('Run Tests and Coverage') {
                 steps {
                     script {
