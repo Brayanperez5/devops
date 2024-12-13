@@ -5,23 +5,21 @@ def call(Map config) {
             nodejs 'NodeJS' 
         }
         stages {
-            stage('Instalar dependencias') {
-                steps {
-                    script {
-                        org.devops.lb_buildartefacto.install()
-                        echo "Instalando dependencias..."
-                    }
-                }
-            }
             stage('Clonar repositorio') {
                 steps {
                     script {
-                        echo "Clonando el repositorio: ${env.GIT_URL_1}"
-                        org.devops.lb_buildartefacto.clone()
+                        git branch: "${env.GIT_BRANCH_1}", url: "${env.GIT_URL_1}"
                     }
                 }
             }
-
+            stage('Instalar dependencias') {
+                steps {
+                    script {
+                        echo "Instalando dependencias..."
+                        org.devops.lb_buildartefacto.install()
+                    }
+                }
+            }
             stage('Run Tests and Coverage') {
                 steps {
                     script {
