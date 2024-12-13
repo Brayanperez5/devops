@@ -17,7 +17,7 @@ def call(Map config) {
                 steps {
                     script {
                         echo "Instalando dependencias..."
-                        sh 'npm install'
+                        bat 'npm install'
                     }
                 }
             }
