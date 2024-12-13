@@ -13,6 +13,29 @@ def call(Map config) {
                     }
                 }
             }
+            stage('Preparar entorno') {
+                steps {
+                    script {
+                        // Realizar checkout en la rama feature
+                        checkout([$class: 'GitSCM', branches: [[name: '*/feature']], userRemoteConfigs: [[url: '<URL_REPOSITORIO>']]])
+                    }
+                    // Validar la rama actual
+                    sh 'git rev-parse --abbrev-ref HEAD'
+                }
+            }
+            stage('Traer archivos desde main') {
+                steps {
+                    script {
+                        // Traer los archivos específicos desde la rama main
+                        sh '''
+                        git fetch origin main
+                        git checkout origin/main -- package.json package-lock.json
+                        ls -la
+                        '''
+                    }
+                }
+            }
+
             stage('Instalar dependencias') {
                 steps {
                     script {
