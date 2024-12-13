@@ -23,7 +23,7 @@ def call(Map config) {
             stage('Clone Repository') {
                 steps {
                     script {
-                        echo "Clonando el repositorio: ${env.GIT_REPO_URL}"
+                        echo "Clonando el repositorio: ${env.GIT_URL_1}"
                         org.devops.lb_buildartefacto.clone()
                     }
                 }
@@ -61,7 +61,7 @@ def call(Map config) {
                 steps {
                     script {
                         echo "Iniciando análisis con SonarQube..."
-                        org.devops.lb_analisissonarqube.analisisSonar(env.PROJECT_NAME)
+                        org.devops.lb_analisissonarqube.analisisSonar(env.GIT_URL_1)
                     }
                 }
             }
