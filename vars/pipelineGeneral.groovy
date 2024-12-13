@@ -13,7 +13,7 @@ def call(Map config) {
                     }
                 }
             }
-            stage('Install Dependencies') {
+            stage('Instalar dependencias') {
                 steps {
                     script {
                         echo "Instalando dependencias..."
