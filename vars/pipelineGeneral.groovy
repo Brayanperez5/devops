@@ -8,8 +8,7 @@ def call(Map config) {
             stage('Clonar repositorio') {
                 steps {
                     script {
-                        load '../src/org/devops/lb_buildartefacto.groovy'
-                        clone()
+                        org.devops.lb_buildartefacto.build()
                     }
                 }
             }
