@@ -7,7 +7,7 @@ def call(Map config) {
         }
 
         stages {
-            stage('Initialize Environment') {
+            stage('Inicia el environment') {
                 steps {
                     script {
                         // Calcular y asignar variables de entorno
@@ -23,7 +23,7 @@ def call(Map config) {
                 }
             }
 
-            stage('Clone Repository') {
+            stage('Clonar el repositorio') {
                 steps {
                     script {
                         echo "Clonando el repositorio: ${env.GIT_URL_1}"
@@ -32,7 +32,7 @@ def call(Map config) {
                 }
             }
 
-            stage('Install Dependencies') {
+            stage('Instalar depencias') {
                 steps {
                     script {
                         echo "Instalando dependencias..."
@@ -41,9 +41,7 @@ def call(Map config) {
                 }
             }
 
-       
-
-            stage('Run Tests and Coverage') {
+            stage('Testeando') {
                 steps {
                     script {
                         echo "Ejecutando pruebas y generando cobertura..."
@@ -52,11 +50,11 @@ def call(Map config) {
                 }
             }
 
-            stage('SonarQube Analysis') {
+            stage('Analisar en sonarqube') {
                 steps {
                     script {
                         echo "Iniciando análisis con SonarQube..."
-                        org.devops.lb_analisissonarqube.analisisSonar(env.PROJECT_NAME)
+                        org.devops.lb_analisissonarqube.analisisSonar(env.GIT_URL_1)
                     }
                 }
             }
