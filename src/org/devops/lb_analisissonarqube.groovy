@@ -5,6 +5,7 @@ def testCoverage() {
 }
 
 def analisisSonar(gitName) {
+    echo "Iniciando análisis con SonarQube..."
     def scannerHome = tool 'sonar-scanner'  
     if(scannerHome) {
         withSonarQubeEnv('sonar-scanner') {  

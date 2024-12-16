@@ -1,6 +1,9 @@
 import org.devops.lb_buildartefacto
+import org.devops.lb_analisissonarqube
+
 def call(Map config) {
     def lb_buildartefacto = new lb_buildartefacto()
+    def lb_analisissonarqube = new lb_analisissonarqube()
     pipeline {
         agent any 
         tools {
@@ -14,25 +17,31 @@ def call(Map config) {
                     }
                 }
             }
-            stage('Instalar dependencias') {
+            stage('Construccion para artefacto') {
                 steps {
                     script {
-                        sh 'npm install'
+                        lb_buildartefacto.build()
                     }
                 }
             }
-            stage('Run Tests and Coverage') {
+            stage('Artefacto en construido') {
                 steps {
                     script {
-                        sh 'npm test'
+                        lb_buildartefacto.generateArtefact()
+                    }
+                }
+            }
+            stage('Correr el test para analisis en sonarqube') {
+                steps {
+                    script {
+                        lb_analisissonarqube.testCoverage()
                     }
                 }
             }
             stage('SonarQube Analysis') {
                 steps {
                     script {
-                        echo "Iniciando análisis con SonarQube..."
-                        org.devops.lb_analisissonarqube.analisisSonar(env.GIT_BRANCH_1)
+                        lb_analisissonarqube.analisisSonar(env.GIT_BRANCH_1)
                     }
                 }
             }
