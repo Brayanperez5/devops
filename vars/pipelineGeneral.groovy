@@ -1,3 +1,4 @@
+import org.devops.lb_buildartefacto
 def call(Map config) {
     pipeline {
         agent any 
