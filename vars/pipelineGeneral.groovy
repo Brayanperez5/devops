@@ -1,7 +1,6 @@
 import org.devops.lb_buildartefacto
 def call(Map config) {
     def lb_buildartefacto = new lb_buildartefacto()
-    lb_buildartefacto.clone()
     pipeline {
         agent any 
         tools {
