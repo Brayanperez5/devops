@@ -1,3 +1,4 @@
+@Library('devops@feature') _
 def call(Map config) {
     pipeline {
         agent any 
@@ -8,7 +9,7 @@ def call(Map config) {
             stage('Clonar repositorio') {
                 steps {
                     script {
-                         src.org.devops.lb_buildartefacto.build()
+                        lb_buildartefacto.build()
                     }
                 }
             }
