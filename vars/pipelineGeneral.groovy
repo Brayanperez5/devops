@@ -17,20 +17,6 @@ def call(Map config) {
                     }
                 }
             }
-            stage('Construccion para artefacto') {
-                steps {
-                    script {
-                        lb_buildartefacto.build()
-                    }
-                }
-            }
-            stage('Artefacto en construido') {
-                steps {
-                    script {
-                        lb_buildartefacto.generateArtefact()
-                    }
-                }
-            }
             stage('Correr el test para analisis en sonarqube') {
                 steps {
                     script {
