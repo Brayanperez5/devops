@@ -1,4 +1,3 @@
-@Library('devops@feature') _
 def call(Map config) {
     pipeline {
         agent any 
