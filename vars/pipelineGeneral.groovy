@@ -9,6 +9,9 @@ def call(Map config) {
         tools {
             nodejs 'NodeJS' 
         }
+        environment {
+            SONAR_SCANNER_HOME = tool 'sonar-scanner'
+        }
         stages {
             stage('Clonar repositorio') {
                 steps {
