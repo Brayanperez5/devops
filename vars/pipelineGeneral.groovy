@@ -37,7 +37,8 @@ def call(Map config) {
                         -Dsonar.projectName="Prueba de Conexión SonarQube" \
                         -Dsonar.sources=. \
                         -Dsonar.host.url=$SONAR_HOST_URL \
-                        -Dsonar.login=$SONAR_AUTH_TOKEN
+                        -Dsonar.login=$SONAR_AUTH_TOKEN \
+                        -X
                         '''
                     }
                 }
