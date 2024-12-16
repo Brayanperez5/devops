@@ -8,11 +8,7 @@ def call(Map config) {
             stage('Clonar repositorio') {
                 steps {
                     script {
-                        if(lb_buildartefacto.clone()) {
-                            echo 'esa era'
-                        } else {
-                            echo 'zzzz'
-                        }
+                        lb_buildartefacto.clone()
                     }
                 }
             }
