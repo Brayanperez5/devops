@@ -17,6 +17,13 @@ def call(Map config) {
                     }
                 }
             }
+            stage('Correr el test para analisis en sonarqube') {
+                steps {
+                    script {
+                        lb_analisissonarqube.testCoverage()
+                    }
+                }
+            }
             stage('Probar conexión SonarQube') {
                 steps {
                     withSonarQubeEnv('sonar-scanner') { // Usar el nombre del servidor configurado en Jenkins
@@ -29,13 +36,6 @@ def call(Map config) {
                         -Dsonar.host.url=$SONAR_HOST_URL \
                         -Dsonar.login=$SONAR_AUTH_TOKEN
                         '''
-                    }
-                }
-            }
-            stage('Correr el test para analisis en sonarqube') {
-                steps {
-                    script {
-                        lb_analisissonarqube.testCoverage()
                     }
                 }
             }
