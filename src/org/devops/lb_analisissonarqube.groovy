@@ -13,7 +13,7 @@ def analisisSonar(gitName) {
             sh "${scannerHome}/bin/sonar-scanner \
             -Dsonar.projectKey=principal \
             -Dsonar.projectName=principal \
-            -Dsonar.sources=. \
+            -Dsonar.sources=src \
             -Dsonar.tests=src/__test__ \
             -Dsonar.exclusions='**/*.test.js' \
             -Dsonar.testExecutionReportPaths=./test-report.xml \
