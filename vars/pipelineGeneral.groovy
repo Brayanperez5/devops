@@ -9,9 +9,6 @@ def call(Map config) {
         tools {
             nodejs 'NodeJS' 
         }
-        environment {
-            SONAR_SCANNER_HOME = tool 'sonar-scanner'
-        }
         stages {
             stage('Clonar repositorio') {
                 steps {
@@ -24,25 +21,6 @@ def call(Map config) {
                 steps {
                     script {
                         lb_analisissonarqube.testCoverage()
-                    }
-                }
-            }
-            stage('Probar conexión SonarQube') {
-                steps {
-                    def scannerHome = tool 'sonar-scanner' 
-                    if(scannerHome) {
-                        withSonarQubeEnv('sonar-scanner') { // Usar el nombre del servidor configurado en Jenkins
-                            echo "Probando conexión con SonarQube..."
-                            sh '''
-                            ${SONAR_SCANNER_HOME}/bin/sonar-scanner \
-                            -Dsonar.projectKey=test-sonarqube \
-                            -Dsonar.projectName="Prueba de Conexión SonarQube" \
-                            -Dsonar.sources=. \
-                            -Dsonar.host.url=$SONAR_HOST_URL \
-                            -Dsonar.login=$SONAR_AUTH_TOKEN \
-                            -X
-                            '''
-                        }
                     }
                 }
             }
