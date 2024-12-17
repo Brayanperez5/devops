@@ -10,6 +10,7 @@ def analisisSonar(gitName) {
     def scannerHome = tool 'sonar-scanner'  
     if(scannerHome) {
         withSonarQubeEnv('sonar-scanner') {  
+            sh 'env | grep SONAR'
             sh "${scannerHome}/bin/sonar-scanner \
             -Dsonar.projectKey=principal \
             -Dsonar.projectName=principal \
