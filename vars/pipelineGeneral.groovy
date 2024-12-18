@@ -4,6 +4,7 @@ import org.devops.lb_deploydocker
 import org.devops.lb_owasp
 
 def call(Map config) {
+    def lb_buildimagen = new lb_buildimagen()
     pipeline {
         agent any
         tools {
