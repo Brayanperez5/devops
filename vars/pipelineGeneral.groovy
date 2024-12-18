@@ -10,6 +10,9 @@ def call(Map config) {
         tools {
             nodejs ('NodeJS')
         }
+        environment {
+            projectGitName = 'devops' // Definición del nombre del proyecto
+        }
         stages {
             stage('construccion imagen') {
                 steps {
