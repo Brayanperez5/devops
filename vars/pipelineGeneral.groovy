@@ -10,28 +10,28 @@ def call(Map config) {
             nodejs ('NodeJS')
         }
         stages {
-            stage {
+            stage('construccion imagen') {
                 steps {
                     script {
                         lb_buildimagen.buildImageDocker()
                     }
                 }
             }
-            stage {
+            stage('publicacion en docker') {
                 steps {
                     script {
                         lb_publicardockerhub.publicarImage()
                     }
                 }
             }
-            stage {
+            stage('despliegue en contenedor') {
                 steps {
                     script {
                         lb_deploydocker.despliegueContenedor()
                     }
                 }
             }
-            stage {
+            stage('analisis en owasp') {
                 steps {
                     script {
                         lb_owasp.analisisOwasp()
