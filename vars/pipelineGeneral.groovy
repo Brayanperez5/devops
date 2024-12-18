@@ -11,9 +11,22 @@ def call(Map config) {
     pipeline {
         agent any
         tools {
-            nodejs ('NodeJS')
+            nodejs 'NodeJS'
         }
         stages {
+            stage('Extract Project Name') {
+                steps {
+                    script {
+                            def urlGitHub = sh(script: 'git config --get remote.origin.url', returnStdout: true).trim()
+                            echo "URL del repositorio Git: ${urlGitHub}"
+
+                            def projectGitName = urlGitHub.replaceAll(/^.*\/([^\/]+)\.git$/, '$1')
+                            echo "Nombre del proyecto extraído: ${projectGitName}"
+
+                            env.projectGitName = projectGitName
+                        }
+                    }
+            }
             stage('construccion imagen') {
                 steps {
                     script {
