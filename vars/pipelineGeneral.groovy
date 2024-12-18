@@ -19,7 +19,7 @@ def call(Map config) {
 
                             def projectGitName = urlGitHub.replaceAll(/^.*\/([^\/]+)\.git$/, '$1')
                             echo "Nombre del proyecto extraído: ${projectGitName}"
-                            
+
                             env.projectGitName = projectGitName
                         }
                     }
@@ -27,7 +27,7 @@ def call(Map config) {
             stage('construccion imagen') {
                 steps {
                     script {
-                        lb_buildimagen.buildImageDocker(env.projectGitName)
+                        lb_buildimagen.buildImageDocker()
                     }
                 }
             }
