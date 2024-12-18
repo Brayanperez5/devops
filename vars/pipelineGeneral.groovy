@@ -10,14 +10,22 @@ def call(Map config) {
         tools {
             nodejs ('NodeJS')
         }
-        environment {
-            projectGitName = 'devops' // Definición del nombre del proyecto
-        }
         stages {
+            stage('Extract Project Name') {
+                steps {
+                    script {
+                            echo "URL del repositorio Git: ${env.urlGitHub}"
+
+                            def projectGitName = urlGitHub.replaceAll(/^.*\/([^\/]+)\.git$/, '$1')
+                            echo "Nombre del proyecto extraído: ${projectGitName}"
+                            env.projectGitName = projectGitName
+                        }
+                    }
+            }
             stage('construccion imagen') {
                 steps {
                     script {
-                        lb_buildimagen.buildImageDocker()
+                        lb_buildimagen.buildImageDocker(env.projectGitName)
                     }
                 }
             }
