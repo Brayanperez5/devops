@@ -30,28 +30,28 @@ def call(Map config) {
             stage('construccion imagen') {
                 steps {
                     script {
-                        lb_buildimagen.buildImageDocker()
+                        lb_buildimagen.buildImageDocker(env.projectGitName)
                     }
                 }
             }
             stage('publicacion en docker') {
                 steps {
                     script {
-                        lb_publicardockerhub.publicarImage()
+                        lb_publicardockerhub.publicarImage(env.projectGitName)
                     }
                 }
             }
             stage('despliegue en contenedor') {
                 steps {
                     script {
-                        lb_deploydocker.despliegueContenedor()
+                        lb_deploydocker.despliegueContenedor(env.projectGitName)
                     }
                 }
             }
             stage('analisis en owasp') {
                 steps {
                     script {
-                        lb_owasp.analisisOwasp()
+                        lb_owasp.analisisOwasp(env.projectGitName)
                     }
                 }
             }
