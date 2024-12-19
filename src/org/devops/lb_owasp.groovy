@@ -8,10 +8,6 @@ def analisisOwasp(projectGitName) {
     -p 8081:8080 -p 8090:8090 -i edansama96/zap2docker-stable \
     zap-webswing.sh -t ${env.dominio} -r /zap/wrk/ProjectOwasp.html -I
     """
-    
-    // Esperar a que el contenedor finalice su trabajo
-    sh "docker wait owasp-analysis"
-    
     // Verificar si el reporte fue generado
     sh """
     if [ ! -f /zap/wrk/ProjectOwasp.html ]; then
