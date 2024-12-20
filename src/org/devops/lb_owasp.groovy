@@ -6,7 +6,7 @@ def analisisOwasp(projectGitName){
           --user root --network=${env.NameNetwork} \
           -t edansama96/zap2docker-stable \
            zap-full-scan.py \
-          -t http://${env.dominio} \
-           -r ProjectOwasp.html -I
+          -t http://${env.dominio}:5174 \
+           -r projectOwasp.html -I
        """
 }
